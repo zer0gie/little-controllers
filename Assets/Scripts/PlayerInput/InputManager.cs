@@ -22,8 +22,6 @@ public class InputManager : MonoBehaviour
         
         Instance = this;
         _inputActions = new PlayerInputActions();
-
-        _inputActions.Player.Diary.performed += DiaryOnPerformed;
     }
 
     private void Start()
@@ -41,6 +39,7 @@ public class InputManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
         DeadManager.Instance.OnPlayerDead += DeadManager_OnPlayerDead;
+        _inputActions.Player.Diary.performed += DiaryOnPerformed;
     }
 
     private void DeadManager_OnPlayerDead(object sender, EventArgs e)

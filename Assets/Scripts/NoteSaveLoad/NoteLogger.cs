@@ -1,13 +1,21 @@
+using System;
 using System.IO;
 using UnityEngine;
 
 public class NoteLogger : MonoBehaviour
 {
     public static NoteLogger Instance { get; private set; }
+
+    public event EventHandler<OnNoteAddedEventArgs> OnNoteAdded;
+
+    public class OnNoteAddedEventArgs : EventArgs
+    {
+        public NoteData Note;
+    }
     
     private const string LOG_FOLDER = "Notes";
     
-    private const string LOG_NAME = "notelog.json";
+    private const string LOG_NAME = "note_log.json";
 
     private PlayerNotes _playerNotes;
 
@@ -32,9 +40,14 @@ public class NoteLogger : MonoBehaviour
         
         _playerNotes.notes.Add(note);
         SavePlayerNotes();
+        OnNoteAdded?.Invoke(this, new OnNoteAddedEventArgs {Note = note});
         Debug.Log(note.noteID + "NOTE ADDED");
     }
 
+    public PlayerNotes GetPlayerNotes()
+    {
+        return _playerNotes;
+    }
     private bool IsNoteAlreadyExist(NoteData note)
     {
         return (_playerNotes.notes.Exists(n => n.noteID == note.noteID));
@@ -69,9 +82,5 @@ public class NoteLogger : MonoBehaviour
 
         File.WriteAllText(path, json);
         Debug.Log("SAVE: saved to " + path);
-    }
-    private void OnLog()
-    {
-            
     }
 }
