@@ -1,16 +1,26 @@
+using System;
+using System.Globalization;
 using UnityEngine;
 
 public class NotePickup : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private string noteText;
+    [SerializeField] private int noteID;
+    [SerializeField] private string noteTitle;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider col)
     {
-        
+        if (col.gameObject.TryGetComponent(out MovementController playerController))
+        {
+            var note = new NoteData
+            {
+                noteText = noteText,
+                noteID = noteID,
+                noteTitle = noteTitle,
+                getTime = DateTime.Now.ToString(CultureInfo.CurrentCulture)
+            };
+            NoteLogger.Instance.TryAddNote(note);
+            Destroy(gameObject);
+        }
     }
 }

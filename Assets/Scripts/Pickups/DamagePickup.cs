@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class DamagePickup : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public DamagePickupConfig damagePickupConfig;
+    
+    private void OnTriggerEnter(Collider col)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (col.gameObject.TryGetComponent(out HealthController healthController))
+        {
+            healthController.DamagePickup(damagePickupConfig.damage);
+            Destroy(gameObject);
+        }
     }
 }
