@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
 
     private Camera _mainCamera;
     
-    private float _mouseSensitivity = 0.05f;
+    private float _sensitivity = 0.05f;
     private float _xRotation;
 
     private void Awake()
@@ -20,12 +20,6 @@ public class CameraController : MonoBehaviour
             _mainCamera.transform.localRotation = Quaternion.identity;
         }
     }
-
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
     private void LateUpdate()
     {
         HandleCamera();
@@ -35,19 +29,14 @@ public class CameraController : MonoBehaviour
     {
         var inputLook = InputManager.Instance.GetLookDelta();
 
-        var _mouseX = inputLook.x * _mouseSensitivity;
-        var _mouseY = inputLook.y * _mouseSensitivity;
+        var x = inputLook.x * _sensitivity;
+        var y = inputLook.y * _sensitivity;
 
-        _xRotation -= _mouseY;
+        _xRotation -= y;
         _xRotation = Mathf.Clamp(_xRotation, -89f, 89f);
 
         cameraPivot.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
 
-        transform.Rotate(Vector3.up * _mouseX);
-    }
-
-    private void OnDestroy()
-    {
-        Cursor.lockState = CursorLockMode.None;
+        transform.Rotate(Vector3.up * x);
     }
 }

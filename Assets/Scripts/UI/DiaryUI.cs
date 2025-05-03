@@ -64,19 +64,6 @@ public class DiaryUI : MonoBehaviour
             child.gameObject.SetActive(true);
         }
     }
-
-    public void Toogle()
-    {
-        _isDiaryOpened = !_isDiaryOpened;
-        if (_isDiaryOpened)
-        {
-            Show();
-        }
-        else
-        {
-            Hide();
-        }
-    }
     private void Hide()
     {
         gameObject.SetActive(false);
