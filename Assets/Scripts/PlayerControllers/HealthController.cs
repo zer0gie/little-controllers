@@ -17,14 +17,11 @@ public class HealthController : MonoBehaviour
         if (_playerHealth >= 0)
         {
             Debug.Log(_playerHealth + " HP");
-            //UIManager.Instance.DamageUIActivate();
-            return;
         }
         else
         {
             Debug.Log(_playerHealth + " HP, player dead");
-            //UIManager.Instance.DeadUIActivate();
-            //DeathManager.Instance.OnPlayerDead();
+            DeadManager.Instance.ConfirmPlayerDead();
         }
 
     }

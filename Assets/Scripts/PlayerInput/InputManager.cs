@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
     
     private PlayerInputActions _inputActions;
 
-    [SerializeField] private bool MobileInputOn = false;
+    [SerializeField] private bool MobileInputOn;
 
     private void Awake()
     {
@@ -36,22 +36,16 @@ public class InputManager : MonoBehaviour
         }
         else
         {
+            MobileInputOn = false;
             _inputActions.Player.Enable();
             Cursor.lockState = CursorLockMode.Locked;
-            MobileInputOn = false;
         }
+        DeadManager.Instance.OnPlayerDead += DeadManager_OnPlayerDead;
     }
 
-    private void Update()
+    private void DeadManager_OnPlayerDead(object sender, EventArgs e)
     {
-        switch (MobileInputOn)
-        {
-            case true: 
-                
-                break;
-            case false: 
-                break;
-        }
+        _inputActions.Dispose();
     }
 
     private void DiaryOnPerformed(InputAction.CallbackContext obj)
