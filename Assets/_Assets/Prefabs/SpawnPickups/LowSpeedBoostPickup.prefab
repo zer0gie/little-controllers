@@ -122,4 +122,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d083c8f6bf3494c8a275038fa934d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hastePickupConfig: {fileID: 11400000, guid: b08e2ea2b197d5248a6a142873de5958, type: 2}
+  hastePickupConfig: {fileID: 11400000, guid: ee04192e494a9624da44cb7920f8331a, type: 2}
