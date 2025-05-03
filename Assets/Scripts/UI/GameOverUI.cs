@@ -4,11 +4,11 @@ public class GameOverUI : MonoBehaviour
 {
     private void Start()
     {
-        DeadManager.Instance.OnPlayerDead += GameManager_OnPlayerDead;
+        DeadManager.Instance.OnPlayerDead += DeadManager_OnPlayerDead;
         Hide();
     }
 
-    private void GameManager_OnPlayerDead(object sender, System.EventArgs e)
+    private void DeadManager_OnPlayerDead(object sender, System.EventArgs e)
     {
         Show();
     }
@@ -23,6 +23,6 @@ public class GameOverUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        DeadManager.Instance.OnPlayerDead -= GameManager_OnPlayerDead;
+        DeadManager.Instance.OnPlayerDead -= DeadManager_OnPlayerDead;
     }
 }

@@ -117,6 +117,7 @@ public class InputManager : MonoBehaviour
     private void OnDestroy()
     {
         _inputActions.Player.Diary.performed -= DiaryOnPerformed;
+        DeadManager.Instance.OnPlayerDead -= DeadManager_OnPlayerDead;
         _inputActions.Player.Disable();
         _inputActions.Dispose();
     }

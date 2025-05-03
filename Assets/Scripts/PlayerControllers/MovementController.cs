@@ -41,7 +41,6 @@ public class MovementController : MonoBehaviour
 
     public void HastePickup(float hasteTime)
     {
-        //UIManager.Instance.HasteUIActivate();
         if (_hasteBoostRoutine != null)
         {
             StopCoroutine(_hasteBoostRoutine);

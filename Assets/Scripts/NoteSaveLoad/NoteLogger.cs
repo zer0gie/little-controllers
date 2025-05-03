@@ -5,18 +5,14 @@ using UnityEngine;
 public class NoteLogger : MonoBehaviour
 {
     public static NoteLogger Instance { get; private set; }
-
     public event EventHandler<OnNoteAddedEventArgs> OnNoteAdded;
-
     public class OnNoteAddedEventArgs : EventArgs
     {
         public NoteData Note;
     }
     
     private const string LOG_FOLDER = "Notes";
-    
     private const string LOG_NAME = "note_log.json";
-
     private PlayerNotes _playerNotes;
 
     private void Awake()

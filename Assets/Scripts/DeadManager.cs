@@ -31,4 +31,9 @@ public class DeadManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
 }

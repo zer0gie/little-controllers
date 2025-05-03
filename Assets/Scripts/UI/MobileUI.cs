@@ -1,9 +1,7 @@
-using System;
 using UnityEngine;
 
 public class MobileUI : MonoBehaviour
 {
-
     private void Show()
     {
         gameObject.SetActive(true);
